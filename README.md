@@ -2,6 +2,8 @@
 
 A very simple React app to count your expenses. This is a single page application created for demo only. This means that the data is not stored in a database. 
 
+[Online version](https://expenses-react-app.vercel.app/).
+
 ## Available Scripts
 
 In the project directory, you can run:
