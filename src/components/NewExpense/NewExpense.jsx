@@ -1,7 +1,12 @@
 import './NewExpense.css';
 import ExpenseForm from './ExpenseForm';
+import {useState} from 'react';
 
 const NewExpense = ({ onAddExpense }) => {
+  const [isFormShown, setIsFormShown] = useState(false);
+
+  const toggleFormShownHandler = () => setIsFormShown((prevFormShown) => !prevFormShown);;
+
   const updateExpenseHandler = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
@@ -9,11 +14,19 @@ const NewExpense = ({ onAddExpense }) => {
     };
 
     onAddExpense(expenseData);
+    toggleFormShownHandler();
   };
 
   return (
     <div className="new-expense">
-      <ExpenseForm onUpdate={updateExpenseHandler} />
+      {
+        !isFormShown
+          ? <button type="button" onClick={toggleFormShownHandler}>Add new expense</button>
+          : <ExpenseForm
+              onUpdate={updateExpenseHandler}
+              onCancel={toggleFormShownHandler}
+            />
+      }
     </div>
   )
 }
